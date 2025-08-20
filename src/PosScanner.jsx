@@ -77,8 +77,25 @@ function POSScanner() {
             <p className="text-red-500 text-center">{product.error}</p>
           ) : (
             <>
-              <h3 className="text-lg font-semibold">{product.name}</h3>
-              <p className="text-gray-700">Price: ${product.price}</p>
+              <h3 className="text-lg font-semibold mb-1">{product.name}</h3>
+              {product.brand && <p className="text-gray-700">Brand: {product.brand}</p>}
+              {product.category && <p className="text-gray-700">Category: {product.category}</p>}
+              {product.price && <p className="text-gray-700">Price: ${product.price}</p>}
+              {product.description && <p className="text-gray-600 mt-2 text-sm">{product.description}</p>}
+
+              {/* Images */}
+              {product.images && product.images.length > 0 && (
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {product.images.slice(0, 4).map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={product.name || 'product'}
+                      className="w-full h-32 object-contain rounded-md border bg-white"
+                    />
+                  ))}
+                </div>
+              )}
             </>
           )}
         </div>
